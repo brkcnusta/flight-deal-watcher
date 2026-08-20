@@ -8,11 +8,13 @@ def cheapest_for_date(
     return_date: str | None,
     adults: int = 1,
     currency: str = "USD",
+    nonstop_only: bool = False,
 ) -> dict | None:
     """Query Google Flights (via fast-flights) for one specific date pair.
 
     Returns {"price": float, "airlines": list[str], "stops": int} for the
-    cheapest listed itinerary, or None if nothing could be fetched.
+    cheapest listed itinerary, or None if nothing could be fetched (including
+    when nonstop_only is set and no nonstop itinerary exists).
     """
     flights = [FlightQuery(date=depart_date, from_airport=origin, to_airport=destination)]
     trip = "one-way"
@@ -26,6 +28,7 @@ def cheapest_for_date(
         seat="economy",
         passengers=Passengers(adults=adults, children=0, infants_in_seat=0, infants_on_lap=0),
         currency=currency,
+        max_stops=0 if nonstop_only else None,
     )
 
     try:

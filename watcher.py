@@ -89,6 +89,7 @@ def run() -> None:
                 return_date=return_date,
                 adults=route.get("adults", 1),
                 currency=route.get("currency", "USD"),
+                nonstop_only=route.get("nonstop_only", False),
             )
             time.sleep(REQUEST_DELAY_SECONDS)
 

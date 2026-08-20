@@ -1,0 +1,37 @@
+name: Flight Deal Watcher
+
+on:
+  schedule:
+    # 08:00, 11:00, 15:00, 20:00 Istanbul time (UTC+3, no DST)
+    - cron: "0 5,8,12,17 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run watcher
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python watcher.py
+
+      - name: Commit updated state
+        run: |
+          git config user.name "flight-deal-watcher-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add state/state.json
+          git diff --cached --quiet || git commit -m "update flight price state [skip ci]"
+          git push
