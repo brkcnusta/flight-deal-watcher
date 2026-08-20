@@ -26,6 +26,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FORCE_REPORT: ${{ github.event_name == 'workflow_dispatch' }}
         run: python watcher.py
 
       - name: Commit updated state

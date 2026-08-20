@@ -58,6 +58,8 @@ def run() -> None:
         routes = yaml.safe_load(f)["routes"]
 
     state = load_state()
+    force_report = os.environ.get("FORCE_REPORT", "").lower() == "true"
+    report_lines = []
 
     for route in routes:
         key = route_key(route)
@@ -137,7 +139,20 @@ def run() -> None:
         else:
             print(f"[{key}] en ucuz {current_price} ({best_date}) - {reason}", file=sys.stderr)
 
+        if force_report:
+            airlines_str = ", ".join(best_info.get("airlines") or []) or "bilinmiyor"
+            dates_str = best_date + (f" -> {best_info['return_date']}" if best_info.get("return_date") else "")
+            report_lines.append(
+                f"{route['name']}: <b>{current_price:.0f} {route.get('currency', 'USD')}</b> "
+                f"({airlines_str}, {dates_str})"
+            )
+
         route_state["history"] = (route_state["history"] + [current_price])[-HISTORY_WINDOW:]
+
+    if force_report and report_lines:
+        text = "✈️ <b>Güncel Fiyat Raporu</b>\n\n" + "\n".join(report_lines)
+        send_message(bot_token, chat_id, text)
+        print("Manuel rapor Telegram'a gonderildi.", file=sys.stderr)
 
     save_state(state)
 
