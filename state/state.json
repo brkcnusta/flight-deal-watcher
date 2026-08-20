@@ -1,0 +1,191 @@
+{
+  "routes": {
+    "IST-DOH-round_trip": {
+      "dates": {
+        "2026-09-01": {
+          "price": 469.0,
+          "airlines": [
+            "Etihad"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-08",
+          "checked_at": "2026-08-20T10:44:07.907107+00:00"
+        },
+        "2026-09-02": {
+          "price": 504.0,
+          "airlines": [
+            "Air Arabia"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-09",
+          "checked_at": "2026-08-20T10:44:10.540827+00:00"
+        },
+        "2026-09-03": {
+          "price": 507.0,
+          "airlines": [
+            "Air Arabia"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-10",
+          "checked_at": "2026-08-20T10:44:13.064278+00:00"
+        },
+        "2026-09-04": {
+          "price": 499.0,
+          "airlines": [
+            "Etihad"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-11",
+          "checked_at": "2026-08-20T10:44:15.816471+00:00"
+        },
+        "2026-09-05": {
+          "price": 421.0,
+          "airlines": [
+            "Gulf Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-12",
+          "checked_at": "2026-08-20T10:44:18.333200+00:00"
+        },
+        "2026-09-06": {
+          "price": 411.0,
+          "airlines": [
+            "Gulf Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-13",
+          "checked_at": "2026-08-20T10:44:20.931871+00:00"
+        }
+      },
+      "history": [
+        411.0
+      ]
+    },
+    "IST-DXB-round_trip": {
+      "dates": {
+        "2026-09-01": {
+          "price": 621.0,
+          "airlines": [
+            "Oman Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-08",
+          "checked_at": "2026-08-20T10:44:23.545288+00:00"
+        },
+        "2026-09-02": {
+          "price": 564.0,
+          "airlines": [
+            "Turkish Airlines",
+            "Oman Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-09",
+          "checked_at": "2026-08-20T10:44:26.055194+00:00"
+        },
+        "2026-09-03": {
+          "price": 589.0,
+          "airlines": [
+            "Oman Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-10",
+          "checked_at": "2026-08-20T10:44:28.543008+00:00"
+        },
+        "2026-09-04": {
+          "price": 564.0,
+          "airlines": [
+            "Turkish Airlines",
+            "Oman Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-11",
+          "checked_at": "2026-08-20T10:44:31.024339+00:00"
+        },
+        "2026-09-05": {
+          "price": 519.0,
+          "airlines": [
+            "Oman Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-12",
+          "checked_at": "2026-08-20T10:44:33.536298+00:00"
+        },
+        "2026-09-06": {
+          "price": 410.0,
+          "airlines": [
+            "Oman Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-09-13",
+          "checked_at": "2026-08-20T10:44:36.037476+00:00"
+        }
+      },
+      "history": [
+        410.0
+      ]
+    },
+    "IST-NRT-round_trip": {
+      "dates": {
+        "2026-10-01": {
+          "price": 1013.0,
+          "airlines": [
+            "THAI"
+          ],
+          "stops": 1,
+          "return_date": "2026-10-11",
+          "checked_at": "2026-08-20T10:44:38.924250+00:00"
+        },
+        "2026-10-02": {
+          "price": 1067.0,
+          "airlines": [
+            "THAI"
+          ],
+          "stops": 1,
+          "return_date": "2026-10-12",
+          "checked_at": "2026-08-20T10:44:41.665854+00:00"
+        },
+        "2026-10-03": {
+          "price": 1227.0,
+          "airlines": [
+            "THAI"
+          ],
+          "stops": 1,
+          "return_date": "2026-10-13",
+          "checked_at": "2026-08-20T10:44:44.526754+00:00"
+        },
+        "2026-10-04": {
+          "price": 1091.0,
+          "airlines": [
+            "Korean Air"
+          ],
+          "stops": 1,
+          "return_date": "2026-10-14",
+          "checked_at": "2026-08-20T10:44:47.404134+00:00"
+        },
+        "2026-10-05": {
+          "price": 1207.0,
+          "airlines": [
+            "Korean Air",
+            "Asiana Airlines"
+          ],
+          "stops": 1,
+          "return_date": "2026-10-15",
+          "checked_at": "2026-08-20T10:44:50.078578+00:00"
+        },
+        "2026-10-06": {
+          "price": 1227.0,
+          "airlines": [
+            "Turkish Airlines",
+            "Asiana Airlines"
+          ],
+          "stops": 1,
+          "return_date": "2026-10-16",
+          "checked_at": "2026-08-20T10:44:52.906446+00:00"
+        }
+      },
+      "history": [
+        1013.0
+      ]
+    }
+  }
+}

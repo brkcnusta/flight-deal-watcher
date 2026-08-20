@@ -1,0 +1,49 @@
+# Her rota bağımsız takip edilir. İstediğiniz kadar rota ekleyebilirsiniz.
+#
+# origin / destination : IATA havaalanı kodu (örn. IST, DOH, DXB, NRT)
+# trip_type             : one_way | round_trip
+# trip_length_days      : round_trip ise, kaç gece kalınacağı (tek sayı)
+# date_from / date_to   : gidiş tarihi bu aralıkta taranır (her tur, aralıktaki
+#                          bilinmeyen/eskimiş birkaç tarih kontrol edilir, tüm
+#                          aralık birkaç tur içinde dönüşümlü taranmış olur)
+# discount_threshold_pct: fiyat, rotanın kendi ortalamasına göre en az bu yüzde
+#                          düşerse "fırsat" sayılır
+# max_price             : (opsiyonel) bu fiyatın altına düşerse direkt uyar
+# dates_per_run         : (opsiyonel) her turda kaç yeni tarih kontrol edilsin (varsayılan 6)
+
+routes:
+  - name: "İstanbul -> Katar (Doha)"
+    origin: IST
+    destination: DOH
+    trip_type: round_trip
+    trip_length_days: 7
+    date_from: "2026-09-01"
+    date_to: "2026-11-30"
+    currency: USD
+    adults: 1
+    discount_threshold_pct: 15
+    max_price: null
+
+  - name: "İstanbul -> Dubai"
+    origin: IST
+    destination: DXB
+    trip_type: round_trip
+    trip_length_days: 7
+    date_from: "2026-09-01"
+    date_to: "2026-11-30"
+    currency: USD
+    adults: 1
+    discount_threshold_pct: 15
+    max_price: null
+
+  - name: "İstanbul -> Japonya (Tokyo)"
+    origin: IST
+    destination: NRT
+    trip_type: round_trip
+    trip_length_days: 10
+    date_from: "2026-10-01"
+    date_to: "2026-12-31"
+    currency: USD
+    adults: 1
+    discount_threshold_pct: 15
+    max_price: null
