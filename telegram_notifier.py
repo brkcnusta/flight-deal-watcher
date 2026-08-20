@@ -13,3 +13,14 @@ def send_message(bot_token: str, chat_id: str, text: str) -> None:
         timeout=20,
     )
     resp.raise_for_status()
+
+
+def send_photo(bot_token: str, chat_id: str, photo_path: str, caption: str = "") -> None:
+    with open(photo_path, "rb") as f:
+        resp = requests.post(
+            f"https://api.telegram.org/bot{bot_token}/sendPhoto",
+            data={"chat_id": chat_id, "caption": caption, "parse_mode": "HTML"},
+            files={"photo": f},
+            timeout=30,
+        )
+    resp.raise_for_status()

@@ -4,7 +4,14 @@ on:
   schedule:
     # 08:00, 11:00, 15:00, 20:00 Istanbul time (UTC+3, no DST)
     - cron: "0 5,8,12,17 * * *"
-  workflow_dispatch: {}
+    # Weekly summary: Sunday 18:00 Istanbul time
+    - cron: "0 15 * * 0"
+  workflow_dispatch:
+    inputs:
+      weekly:
+        description: "Force a weekly summary report (for testing)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,6 +34,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FORCE_REPORT: ${{ github.event_name == 'workflow_dispatch' }}
+          WEEKLY_REPORT: ${{ github.event.schedule == '0 15 * * 0' || inputs.weekly == true }}
         run: python watcher.py
 
       - name: Commit updated state

@@ -7,16 +7,19 @@ from datetime import date, datetime, timedelta, timezone
 import yaml
 from dotenv import load_dotenv
 
+from chart_generator import build_trend_chart
 from deal_detector import evaluate
 from google_flights_client import cheapest_for_date
 from state_store import load_state, route_key, save_state
-from telegram_notifier import send_message
+from telegram_notifier import send_message, send_photo
 
 ROUTES_PATH = os.path.join(os.path.dirname(__file__), "routes.yaml")
-HISTORY_WINDOW = 30
+CHART_PATH = os.path.join(os.path.dirname(__file__), "trend_chart.png")
+HISTORY_WINDOW = 60
 DEFAULT_DATES_PER_RUN = 6
 DEFAULT_RECHECK_AFTER_HOURS = 20
 REQUEST_DELAY_SECONDS = 1.5
+FAILURE_ALERT_THRESHOLD = 3
 
 
 def daterange(start: str, end: str) -> list[str]:
@@ -49,17 +52,26 @@ def pick_dates_to_check(
     return [d for _, d in stale[:dates_per_run]]
 
 
+def recent_prices(history: list[dict], days: int) -> list[float]:
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    recent = [h["price"] for h in history if datetime.fromisoformat(h["checked_at"]) >= cutoff]
+    return recent or [h["price"] for h in history]
+
+
 def run() -> None:
     load_dotenv()
     bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
+    force_report = os.environ.get("FORCE_REPORT", "").lower() == "true"
+    weekly_report = os.environ.get("WEEKLY_REPORT", "").lower() == "true"
 
     with open(ROUTES_PATH, "r") as f:
         routes = yaml.safe_load(f)["routes"]
 
     state = load_state()
-    force_report = os.environ.get("FORCE_REPORT", "").lower() == "true"
     report_lines = []
+    weekly_lines = []
+    chart_input = {}
 
     for route in routes:
         key = route_key(route)
@@ -69,7 +81,9 @@ def run() -> None:
         trip_length = route.get("trip_length_days") if not one_way else None
         candidate_dates = daterange(route["date_from"], route["date_to"])
 
-        route_state = state["routes"].setdefault(key, {"dates": {}, "history": []})
+        route_state = state["routes"].setdefault(
+            key, {"dates": {}, "history": [], "consecutive_failures": 0, "failure_alerted": False}
+        )
         known = route_state["dates"]
 
         to_check = pick_dates_to_check(
@@ -79,6 +93,7 @@ def run() -> None:
             route.get("recheck_after_hours", DEFAULT_RECHECK_AFTER_HOURS),
         )
 
+        fetched_this_run = 0
         for depart_date in to_check:
             return_date = None
             if trip_length:
@@ -99,11 +114,33 @@ def run() -> None:
                 print(f"[{key}] {depart_date}: veri alinamadi, atlaniyor", file=sys.stderr)
                 continue
 
+            fetched_this_run += 1
             known[depart_date] = {
                 **result,
                 "return_date": return_date,
                 "checked_at": datetime.now(timezone.utc).isoformat(),
             }
+
+        if to_check:
+            if fetched_this_run == 0:
+                route_state["consecutive_failures"] = route_state.get("consecutive_failures", 0) + 1
+            else:
+                route_state["consecutive_failures"] = 0
+                route_state["failure_alerted"] = False
+
+        if (
+            route_state.get("consecutive_failures", 0) >= FAILURE_ALERT_THRESHOLD
+            and not route_state.get("failure_alerted", False)
+        ):
+            send_message(
+                bot_token,
+                chat_id,
+                f"⚠️ <b>Sistem uyarisi: {route['name']}</b>\n"
+                f"Art arda {route_state['consecutive_failures']} kontrolde veri alinamadi. "
+                f"Google Flights sorgusu bozulmus olabilir, kontrol edilmesi gerekiyor.",
+            )
+            route_state["failure_alerted"] = True
+            print(f"[{key}] HATA BILDIRIMI GONDERILDI", file=sys.stderr)
 
         if not known:
             print(f"[{key}] henuz veri yok", file=sys.stderr)
@@ -112,8 +149,9 @@ def run() -> None:
         best_date, best_info = min(known.items(), key=lambda kv: kv[1]["price"])
         current_price = best_info["price"]
 
+        history_prices = [h["price"] for h in route_state["history"]]
         is_deal, reason = evaluate(
-            history_prices=route_state["history"],
+            history_prices=history_prices,
             current_price=current_price,
             discount_threshold_pct=route.get("discount_threshold_pct", 15),
             max_price=route.get("max_price"),
@@ -147,12 +185,32 @@ def run() -> None:
                 f"({airlines_str}, {dates_str})"
             )
 
-        route_state["history"] = (route_state["history"] + [current_price])[-HISTORY_WINDOW:]
+        route_state["history"] = (
+            route_state["history"]
+            + [{"price": current_price, "checked_at": datetime.now(timezone.utc).isoformat()}]
+        )[-HISTORY_WINDOW:]
+
+        if weekly_report:
+            week_prices = recent_prices(route_state["history"], days=7)
+            weekly_lines.append(
+                f"{route['name']}: simdi <b>{current_price:.0f}</b>, "
+                f"bu hafta min {min(week_prices):.0f} / maks {max(week_prices):.0f} / "
+                f"ort {sum(week_prices) / len(week_prices):.0f} {route.get('currency', 'USD')}"
+            )
+            chart_input[route["name"]] = {"history": route_state["history"], "currency": route.get("currency", "USD")}
 
     if force_report and report_lines:
         text = "✈️ <b>Güncel Fiyat Raporu</b>\n\n" + "\n".join(report_lines)
         send_message(bot_token, chat_id, text)
         print("Manuel rapor Telegram'a gonderildi.", file=sys.stderr)
+
+    if weekly_report and weekly_lines:
+        caption = "📊 <b>Haftalik Ozet</b>\n\n" + "\n".join(weekly_lines)
+        if build_trend_chart(chart_input, CHART_PATH):
+            send_photo(bot_token, chat_id, CHART_PATH, caption=caption)
+        else:
+            send_message(bot_token, chat_id, caption)
+        print("Haftalik ozet Telegram'a gonderildi.", file=sys.stderr)
 
     save_state(state)
 
