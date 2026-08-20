@@ -1,3 +1,88 @@
 {
-  "routes": {}
+  "routes": {
+    "IST-DXB-round_trip": {
+      "dates": {
+        "2027-03-05": {
+          "price": 748.0,
+          "airlines": [
+            "flydubai"
+          ],
+          "stops": 0,
+          "return_date": "2027-03-13",
+          "checked_at": "2026-08-20T13:04:26.126573+00:00"
+        }
+      },
+      "history": [
+        {
+          "price": 748.0,
+          "checked_at": "2026-08-20T13:04:26.126692+00:00"
+        }
+      ],
+      "consecutive_failures": 0,
+      "failure_alerted": false
+    },
+    "IST-AUH-round_trip": {
+      "dates": {
+        "2027-03-05": {
+          "price": 440.0,
+          "airlines": [
+            "Etihad"
+          ],
+          "stops": 0,
+          "return_date": "2027-03-13",
+          "checked_at": "2026-08-20T13:04:27.940932+00:00"
+        }
+      },
+      "history": [
+        {
+          "price": 440.0,
+          "checked_at": "2026-08-20T13:04:27.941075+00:00"
+        }
+      ],
+      "consecutive_failures": 0,
+      "failure_alerted": false
+    },
+    "IST-DOH-round_trip": {
+      "dates": {
+        "2027-03-05": {
+          "price": 449.0,
+          "airlines": [
+            "Turkish Airlines"
+          ],
+          "stops": 0,
+          "return_date": "2027-03-13",
+          "checked_at": "2026-08-20T13:04:29.786427+00:00"
+        }
+      },
+      "history": [
+        {
+          "price": 449.0,
+          "checked_at": "2026-08-20T13:04:29.786539+00:00"
+        }
+      ],
+      "consecutive_failures": 0,
+      "failure_alerted": false
+    },
+    "IST-NRT-round_trip": {
+      "dates": {
+        "2027-03-05": {
+          "price": 2034.0,
+          "airlines": [
+            "Turkish Airlines"
+          ],
+          "stops": 0,
+          "return_date": "2027-03-13",
+          "checked_at": "2026-08-20T13:04:31.752875+00:00"
+        }
+      },
+      "history": [
+        {
+          "price": 2034.0,
+          "checked_at": "2026-08-20T13:04:31.752992+00:00"
+        }
+      ],
+      "consecutive_failures": 0,
+      "failure_alerted": false
+    }
+  }
 }
