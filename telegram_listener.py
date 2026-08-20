@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 import watcher
 from state_store import load_state, save_state
 
-COMMANDS = {"/simdi", "/fiyat", "/kontrol", "/check", "simdi", "fiyat", "kontrol"}
+PRICE_COMMANDS = {"/fiyat", "fiyat", "/simdi", "simdi", "/kontrol", "kontrol", "/check"}
+REPORT_COMMANDS = {"/rapor", "rapor"}
 
 
 def run() -> None:
@@ -30,7 +31,8 @@ def run() -> None:
         print("Yeni mesaj yok.", file=sys.stderr)
         return
 
-    triggered = False
+    price_triggered = False
+    report_triggered = False
     max_update_id = last_update_id
     for u in updates:
         max_update_id = max(max_update_id, u["update_id"])
@@ -40,17 +42,24 @@ def run() -> None:
         if str(msg["chat"]["id"]) != chat_id:
             continue
         text = (msg.get("text") or "").strip().lower()
-        if text in COMMANDS:
-            triggered = True
+        if text in PRICE_COMMANDS:
+            price_triggered = True
+        elif text in REPORT_COMMANDS:
+            report_triggered = True
 
     state["telegram_last_update_id"] = max_update_id
     save_state(state)
 
-    if triggered:
-        print("Komut algilandi, fiyat kontrolu tetikleniyor.", file=sys.stderr)
+    if price_triggered:
+        print("/fiyat algilandi, fiyat kontrolu tetikleniyor.", file=sys.stderr)
         os.environ["FORCE_REPORT"] = "true"
         watcher.run()
-    else:
+
+    if report_triggered:
+        print("/rapor algilandi, tam gecmis gonderiliyor.", file=sys.stderr)
+        watcher.send_full_history_report()
+
+    if not price_triggered and not report_triggered:
         print("Yeni mesaj var ama taninan bir komut degil.", file=sys.stderr)
 
 

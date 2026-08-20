@@ -215,5 +215,39 @@ def run() -> None:
     save_state(state)
 
 
+def send_full_history_report() -> None:
+    """Send one Telegram message per route listing every recorded price check."""
+    load_dotenv()
+    bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
+    chat_id = os.environ["TELEGRAM_CHAT_ID"]
+    istanbul = timezone(timedelta(hours=3))
+
+    with open(ROUTES_PATH, "r") as f:
+        routes = yaml.safe_load(f)["routes"]
+
+    state = load_state()
+
+    for route in routes:
+        key = route_key(route)
+        route_state = state["routes"].get(key)
+        currency = route.get("currency", "USD")
+
+        if not route_state or not route_state.get("history"):
+            send_message(bot_token, chat_id, f"📋 <b>{route['name']}</b>\n\nHenuz veri yok.")
+            time.sleep(0.5)
+            continue
+
+        lines = []
+        for h in route_state["history"]:
+            local_dt = datetime.fromisoformat(h["checked_at"]).astimezone(istanbul)
+            lines.append(f"{local_dt.strftime('%d.%m %H:%M')} - {h['price']:.0f} {currency}")
+
+        text = f"📋 <b>{route['name']} - Gecmis Fiyatlar</b>\n\n" + "\n".join(lines)
+        send_message(bot_token, chat_id, text)
+        time.sleep(0.5)
+
+    print("Tam gecmis raporu Telegram'a gonderildi.", file=sys.stderr)
+
+
 if __name__ == "__main__":
     run()
