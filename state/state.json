@@ -100,5 +100,6 @@
       "consecutive_failures": 0,
       "failure_alerted": false
     }
-  }
+  },
+  "telegram_last_update_id": 127005211
 }

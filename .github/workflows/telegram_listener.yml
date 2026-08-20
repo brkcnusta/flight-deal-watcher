@@ -1,17 +1,9 @@
-name: Flight Deal Watcher
+name: Telegram Command Listener
 
 on:
   schedule:
-    # 08:00, 11:00, 15:00, 20:00 Istanbul time (UTC+3, no DST)
-    - cron: "0 5,8,12,17 * * *"
-    # Weekly summary: Sunday 18:00 Istanbul time
-    - cron: "0 15 * * 0"
-  workflow_dispatch:
-    inputs:
-      weekly:
-        description: "Force a weekly summary report (for testing)"
-        type: boolean
-        default: false
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -21,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check:
+  listen:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,19 +25,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run watcher
+      - name: Check for Telegram commands
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          FORCE_REPORT: ${{ github.event_name == 'workflow_dispatch' }}
-          WEEKLY_REPORT: ${{ github.event.schedule == '0 15 * * 0' || inputs.weekly == true }}
-        run: python watcher.py
+        run: python telegram_listener.py
 
       - name: Commit updated state
         run: |
           git config user.name "flight-deal-watcher-bot"
           git config user.email "actions@users.noreply.github.com"
           git add state/state.json
-          git diff --cached --quiet || git commit -m "update flight price state [skip ci]"
+          git diff --cached --quiet || git commit -m "update state (telegram listener) [skip ci]"
           git pull --rebase
           git push
