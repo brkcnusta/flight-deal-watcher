@@ -5,11 +5,11 @@
         "2027-03-05": {
           "price": 748.0,
           "airlines": [
-            "flydubai"
+            "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-20T13:04:26.126573+00:00"
+          "checked_at": "2026-08-21T11:34:07.506052+00:00"
         }
       },
       "history": [
@@ -44,6 +44,10 @@
         {
           "price": 748.0,
           "checked_at": "2026-08-21T08:38:11.954728+00:00"
+        },
+        {
+          "price": 748.0,
+          "checked_at": "2026-08-21T11:34:07.506285+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -58,7 +62,7 @@
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-20T13:04:27.940932+00:00"
+          "checked_at": "2026-08-21T11:34:09.321159+00:00"
         }
       },
       "history": [
@@ -93,6 +97,10 @@
         {
           "price": 440.0,
           "checked_at": "2026-08-21T08:38:11.954820+00:00"
+        },
+        {
+          "price": 440.0,
+          "checked_at": "2026-08-21T11:34:09.321355+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -101,13 +109,13 @@
     "IST-DOH-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 449.0,
+          "price": 448.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-20T13:04:29.786427+00:00"
+          "checked_at": "2026-08-21T11:34:11.077793+00:00"
         }
       },
       "history": [
@@ -142,6 +150,10 @@
         {
           "price": 449.0,
           "checked_at": "2026-08-21T08:38:11.954893+00:00"
+        },
+        {
+          "price": 448.0,
+          "checked_at": "2026-08-21T11:34:11.429576+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -150,13 +162,13 @@
     "IST-NRT-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 2034.0,
+          "price": 2030.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-20T13:04:31.752875+00:00"
+          "checked_at": "2026-08-21T11:34:13.220233+00:00"
         }
       },
       "history": [
@@ -191,11 +203,15 @@
         {
           "price": 2034.0,
           "checked_at": "2026-08-21T08:38:11.954938+00:00"
+        },
+        {
+          "price": 2030.0,
+          "checked_at": "2026-08-21T11:34:13.562093+00:00"
         }
       ],
       "consecutive_failures": 0,
       "failure_alerted": false
     }
   },
-  "telegram_last_update_id": 127005215
+  "telegram_last_update_id": 127005216
 }
