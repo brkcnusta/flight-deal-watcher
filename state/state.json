@@ -64,6 +64,10 @@
         {
           "price": 749.0,
           "checked_at": "2026-08-22T08:26:51.495288+00:00"
+        },
+        {
+          "price": 749.0,
+          "checked_at": "2026-08-22T09:42:43.688839+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -133,6 +137,10 @@
         {
           "price": 441.0,
           "checked_at": "2026-08-22T08:26:53.214561+00:00"
+        },
+        {
+          "price": 441.0,
+          "checked_at": "2026-08-22T09:42:43.688911+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -202,6 +210,10 @@
         {
           "price": 448.0,
           "checked_at": "2026-08-22T08:26:55.055748+00:00"
+        },
+        {
+          "price": 448.0,
+          "checked_at": "2026-08-22T09:42:43.688973+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -271,11 +283,15 @@
         {
           "price": 2032.0,
           "checked_at": "2026-08-22T08:26:56.857297+00:00"
+        },
+        {
+          "price": 2032.0,
+          "checked_at": "2026-08-22T09:42:43.689026+00:00"
         }
       ],
       "consecutive_failures": 0,
       "failure_alerted": false
     }
   },
-  "telegram_last_update_id": 127005216
+  "telegram_last_update_id": 127005217
 }
