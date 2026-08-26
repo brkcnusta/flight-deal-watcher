@@ -3,13 +3,13 @@
     "IST-DXB-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 749.0,
+          "price": 750.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-25T05:29:58.023876+00:00"
+          "checked_at": "2026-08-26T05:32:41.905603+00:00"
         }
       },
       "history": [
@@ -128,6 +128,10 @@
         {
           "price": 749.0,
           "checked_at": "2026-08-25T17:30:26.012842+00:00"
+        },
+        {
+          "price": 750.0,
+          "checked_at": "2026-08-26T05:32:41.905793+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -136,13 +140,13 @@
     "IST-AUH-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 508.0,
+          "price": 441.0,
           "airlines": [
             "Etihad"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-25T05:29:59.828969+00:00"
+          "checked_at": "2026-08-26T05:32:43.730820+00:00"
         }
       },
       "history": [
@@ -261,6 +265,10 @@
         {
           "price": 508.0,
           "checked_at": "2026-08-25T17:30:26.012939+00:00"
+        },
+        {
+          "price": 441.0,
+          "checked_at": "2026-08-26T05:32:43.730996+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -269,13 +277,13 @@
     "IST-DOH-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 448.0,
+          "price": 449.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-25T05:30:01.567436+00:00"
+          "checked_at": "2026-08-26T05:32:45.529235+00:00"
         }
       },
       "history": [
@@ -394,6 +402,10 @@
         {
           "price": 448.0,
           "checked_at": "2026-08-25T17:30:26.013015+00:00"
+        },
+        {
+          "price": 449.0,
+          "checked_at": "2026-08-26T05:32:45.529416+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -402,13 +414,13 @@
     "IST-NRT-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 2031.0,
+          "price": 2035.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-08-25T05:30:03.367277+00:00"
+          "checked_at": "2026-08-26T05:32:47.302723+00:00"
         }
       },
       "history": [
@@ -527,6 +539,10 @@
         {
           "price": 2031.0,
           "checked_at": "2026-08-25T17:30:26.013068+00:00"
+        },
+        {
+          "price": 2035.0,
+          "checked_at": "2026-08-26T05:32:47.302911+00:00"
         }
       ],
       "consecutive_failures": 0,
