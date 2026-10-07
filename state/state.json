@@ -15,10 +15,6 @@
       "history": [
         {
           "price": 748.0,
-          "checked_at": "2026-09-15T16:18:50.209678+00:00"
-        },
-        {
-          "price": 748.0,
           "checked_at": "2026-09-15T20:00:07.483863+00:00"
         },
         {
@@ -252,9 +248,13 @@
         {
           "price": 748.0,
           "checked_at": "2026-10-06T17:57:25.715406+00:00"
+        },
+        {
+          "price": 748.0,
+          "checked_at": "2026-10-07T11:31:26.791405+00:00"
         }
       ],
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "failure_alerted": false
     },
     "IST-AUH-round_trip": {
@@ -270,10 +270,6 @@
         }
       },
       "history": [
-        {
-          "price": 507.0,
-          "checked_at": "2026-09-15T16:18:51.999823+00:00"
-        },
         {
           "price": 507.0,
           "checked_at": "2026-09-15T20:00:07.483979+00:00"
@@ -509,28 +505,28 @@
         {
           "price": 472.0,
           "checked_at": "2026-10-06T17:57:25.715467+00:00"
+        },
+        {
+          "price": 472.0,
+          "checked_at": "2026-10-07T11:31:28.683037+00:00"
         }
       ],
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "failure_alerted": false
     },
     "IST-DOH-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 447.0,
+          "price": 448.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-10-06T11:48:09.730387+00:00"
+          "checked_at": "2026-10-07T11:31:30.612470+00:00"
         }
       },
       "history": [
-        {
-          "price": 448.0,
-          "checked_at": "2026-09-15T16:18:53.865147+00:00"
-        },
         {
           "price": 448.0,
           "checked_at": "2026-09-15T20:00:07.484066+00:00"
@@ -766,6 +762,10 @@
         {
           "price": 447.0,
           "checked_at": "2026-10-06T17:57:25.715515+00:00"
+        },
+        {
+          "price": 448.0,
+          "checked_at": "2026-10-07T11:31:30.612636+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -784,10 +784,6 @@
         }
       },
       "history": [
-        {
-          "price": 1947.0,
-          "checked_at": "2026-09-15T16:18:55.799054+00:00"
-        },
         {
           "price": 1947.0,
           "checked_at": "2026-09-15T20:00:07.484141+00:00"
@@ -1023,9 +1019,13 @@
         {
           "price": 2466.0,
           "checked_at": "2026-10-06T17:57:25.715559+00:00"
+        },
+        {
+          "price": 2466.0,
+          "checked_at": "2026-10-07T11:31:32.538386+00:00"
         }
       ],
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "failure_alerted": false
     }
   },
