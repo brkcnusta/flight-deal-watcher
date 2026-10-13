@@ -9,14 +9,10 @@
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-10-12T23:29:59.595816+00:00"
+          "checked_at": "2026-10-13T21:43:25.381615+00:00"
         }
       },
       "history": [
-        {
-          "price": 748.0,
-          "checked_at": "2026-09-20T15:28:44.494616+00:00"
-        },
         {
           "price": 748.0,
           "checked_at": "2026-09-20T18:01:16.507402+00:00"
@@ -252,6 +248,10 @@
         {
           "price": 742.0,
           "checked_at": "2026-10-13T12:27:52.913544+00:00"
+        },
+        {
+          "price": 742.0,
+          "checked_at": "2026-10-13T21:43:25.381805+00:00"
         }
       ],
       "consecutive_failures": 0,
@@ -270,10 +270,6 @@
         }
       },
       "history": [
-        {
-          "price": 569.0,
-          "checked_at": "2026-09-20T15:28:46.348878+00:00"
-        },
         {
           "price": 569.0,
           "checked_at": "2026-09-20T18:01:16.507515+00:00"
@@ -509,10 +505,14 @@
         {
           "price": 472.0,
           "checked_at": "2026-10-13T12:27:54.891689+00:00"
+        },
+        {
+          "price": 472.0,
+          "checked_at": "2026-10-13T21:43:27.543398+00:00"
         }
       ],
-      "consecutive_failures": 2,
-      "failure_alerted": false
+      "consecutive_failures": 3,
+      "failure_alerted": true
     },
     "IST-DOH-round_trip": {
       "dates": {
@@ -527,10 +527,6 @@
         }
       },
       "history": [
-        {
-          "price": 448.0,
-          "checked_at": "2026-09-20T15:28:48.261449+00:00"
-        },
         {
           "price": 448.0,
           "checked_at": "2026-09-20T18:01:16.507613+00:00"
@@ -766,28 +762,28 @@
         {
           "price": 447.0,
           "checked_at": "2026-10-13T12:27:54.891877+00:00"
+        },
+        {
+          "price": 447.0,
+          "checked_at": "2026-10-13T21:43:29.289159+00:00"
         }
       ],
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "failure_alerted": false
     },
     "IST-NRT-round_trip": {
       "dates": {
         "2027-03-05": {
-          "price": 2464.0,
+          "price": 2462.0,
           "airlines": [
             "Turkish Airlines"
           ],
           "stops": 0,
           "return_date": "2027-03-13",
-          "checked_at": "2026-10-12T23:30:05.682712+00:00"
+          "checked_at": "2026-10-13T21:43:31.113439+00:00"
         }
       },
       "history": [
-        {
-          "price": 1948.0,
-          "checked_at": "2026-09-20T15:28:50.202685+00:00"
-        },
         {
           "price": 1948.0,
           "checked_at": "2026-09-20T18:01:16.507710+00:00"
@@ -1023,6 +1019,10 @@
         {
           "price": 2464.0,
           "checked_at": "2026-10-13T12:27:54.891991+00:00"
+        },
+        {
+          "price": 2462.0,
+          "checked_at": "2026-10-13T21:43:31.113622+00:00"
         }
       ],
       "consecutive_failures": 0,
